@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EntityFrameworkSqlite2.Migrations
 {
     [DbContext(typeof(Repository))]
-    [Migration("20240409071911_InitialCreate-v2")]
-    partial class InitialCreatev2
+    [Migration("20240409134437_InitialCreate-v4")]
+    partial class InitialCreatev4
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,6 +72,39 @@ namespace EntityFrameworkSqlite2.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("EntityFrameworkSqlite2.Model.StudentAddress", b =>
+                {
+                    b.Property<int>("StudentAddressId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("StudentAddressId");
+
+                    b.HasIndex("StudentId")
+                        .IsUnique();
+
+                    b.ToTable("StudentAddresses");
+                });
+
             modelBuilder.Entity("EntityFrameworkSqlite2.Model.Student", b =>
                 {
                     b.HasOne("EntityFrameworkSqlite2.Model.Grade", "Grade")
@@ -83,9 +116,26 @@ namespace EntityFrameworkSqlite2.Migrations
                     b.Navigation("Grade");
                 });
 
+            modelBuilder.Entity("EntityFrameworkSqlite2.Model.StudentAddress", b =>
+                {
+                    b.HasOne("EntityFrameworkSqlite2.Model.Student", "Student")
+                        .WithOne("StudentAddress")
+                        .HasForeignKey("EntityFrameworkSqlite2.Model.StudentAddress", "StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("EntityFrameworkSqlite2.Model.Grade", b =>
                 {
                     b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("EntityFrameworkSqlite2.Model.Student", b =>
+                {
+                    b.Navigation("StudentAddress")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
