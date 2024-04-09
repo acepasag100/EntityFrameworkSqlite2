@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EntityFrameworkSqlite2.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,11 @@ namespace EntityFrameworkSqlite2
 {
     public class Repository : DbContext
     {
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Grade> Grades { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //base.OnConfiguring(optionsBuilder);
-
+            optionsBuilder.UseSqlite("Data Source=School.db");
         }
     }
 }
