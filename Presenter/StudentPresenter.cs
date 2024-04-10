@@ -17,6 +17,7 @@ namespace EntityFrameworkSqlite2.Presenter
 
         public StudentPresenter(StudentView studentView, StudentRepository studentRepository)
         {
+            bindingSource = new BindingSource();
             this.studentView = studentView;
             this.studentRepository = studentRepository;
             this.studentView.StudentBind(bindingSource);
@@ -32,7 +33,7 @@ namespace EntityFrameworkSqlite2.Presenter
 
         private void load()
         {
-            this.students = studentRepository.GetAll();
+            students = studentRepository.GetAll();
             bindingSource.DataSource = this.students;
         }
     }

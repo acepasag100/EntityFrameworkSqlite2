@@ -1,4 +1,5 @@
 ﻿using EntityFrameworkSqlite2.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,8 @@ namespace EntityFrameworkSqlite2.Repositories
         }
 
         public IEnumerable<Student> GetAll()
-        {
-            //var list = new List<Student>();
-            return Students.ToList();
+        {   
+            return Students.ToList(); 
         }
 
         public IEnumerable<Student> GetAll(string value)
