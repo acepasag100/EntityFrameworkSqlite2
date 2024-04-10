@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace EntityFrameworkSqlite2.Presenter
 {
@@ -22,8 +23,29 @@ namespace EntityFrameworkSqlite2.Presenter
             this.studentRepository = studentRepository;
             this.studentView.StudentBind(bindingSource);
             this.studentView.eventAdd += StudentView_eventAdd;
+            this.studentView.eventUpdate += StudentView_eventUpdate;
+            this.studentView.eventDelete += StudentView_eventDelete;
+            this.studentView.eventCellClick += StudentView_eventCellClick;
 
             load();
+        }
+
+        private void StudentView_eventCellClick(object? sender, EventArgs e)
+        {
+            var student = (Student)bindingSource.Current;
+            this.studentView.StudentId = student.StudentId;
+            this.studentView.LastName = student.LastName;
+            this.studentView.FirstName = student.FirstName;
+        }
+
+        private void StudentView_eventDelete(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void StudentView_eventUpdate(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void StudentView_eventAdd(object? sender, EventArgs e)

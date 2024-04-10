@@ -13,13 +13,24 @@ namespace EntityFrameworkSqlite2
             InitializeComponent();
             Load += delegate
             {
-                //dataGridView1.DataSource = repository.Students.ToList();
                 StudentRepository repository = new StudentR();
                 StudentPresenter presenter = new StudentPresenter(this, repository);
             };
             btnAdd.Click += delegate
             {
                 eventAdd?.Invoke(this, EventArgs.Empty);
+            };
+            btnDelete.Click += delegate
+            {
+                eventDelete?.Invoke(this, EventArgs.Empty);
+            };
+            btnUpdate.Click += delegate
+            {
+                eventUpdate?.Invoke(this, EventArgs.Empty);
+            };
+            dataGridView1.CellClick += (s, e) =>
+            {
+                eventCellClick?.Invoke(this, EventArgs.Empty);
             };
         }
 
@@ -28,8 +39,41 @@ namespace EntityFrameworkSqlite2
             get => int.Parse(tbStudId.Text); 
             set => tbStudId.Text = value.ToString(); 
         }
+        public string FirstName 
+        { 
+            get => tbFirstName.Text; 
+            set => tbFirstName.Text = value; 
+        }
+        public string LastName 
+        { 
+            get => tbLastName.Text; 
+            set => tbLastName.Text = value; 
+        }
+        public string DateOfBirth 
+        { 
+            get => dtpDob.Value.ToString("mm/dd/yyyy"); 
+            set => dtpDob.Value = DateTime.Parse(value); 
+        }
+        public float Weight 
+        {
+            get => float.Parse(tbWeight.Text); 
+            set => tbWeight.Text = value.ToString(); 
+        }
+        public int GradeId 
+        {
+            get => throw new NotImplementedException(); 
+            set => throw new NotImplementedException(); 
+        }
+        public float Height 
+        { 
+            get => float.Parse(tbHeight.Text); 
+            set => tbHeight.Text = value.ToString(); 
+        }
 
         public event EventHandler eventAdd;
+        public event EventHandler eventUpdate;
+        public event EventHandler eventDelete;
+        public event EventHandler eventCellClick;
 
         public void StudentBind(BindingSource bindingSource)
         {
