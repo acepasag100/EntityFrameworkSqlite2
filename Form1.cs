@@ -5,7 +5,7 @@ using EntityFrameworkSqlite2.View;
 
 namespace EntityFrameworkSqlite2
 {
-    public partial class Form1 : Form, StudentView
+    public partial class Form1 : Form, StudentView, GradeView
     {
         Repository repository = new Repository();
         public Form1()
@@ -14,7 +14,8 @@ namespace EntityFrameworkSqlite2
             Load += delegate
             {
                 StudentRepository repository = new StudentR();
-                StudentPresenter presenter = new StudentPresenter(this, repository);
+                GradeRepository gradeRepository = new GradeR();
+                StudentPresenter presenter = new StudentPresenter(this, this, repository, gradeRepository);
             };
             btnAdd.Click += delegate
             {
@@ -74,6 +75,12 @@ namespace EntityFrameworkSqlite2
         public event EventHandler eventUpdate;
         public event EventHandler eventDelete;
         public event EventHandler eventCellClick;
+
+        public void GradeBind(BindingSource bindingSource)
+        {
+            cbGrade.DataSource = bindingSource;
+            cbGrade.DisplayMember = "GradeName";
+        }
 
         public void StudentBind(BindingSource bindingSource)
         {

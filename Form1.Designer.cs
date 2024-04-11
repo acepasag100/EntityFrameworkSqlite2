@@ -56,6 +56,8 @@
             label11 = new Label();
             tbCountry = new TextBox();
             label12 = new Label();
+            cbGrade = new ComboBox();
+            label13 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -187,7 +189,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(1160, 625);
+            btnAdd.Location = new Point(1153, 625);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(94, 49);
             btnAdd.TabIndex = 16;
@@ -196,7 +198,7 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(1060, 625);
+            btnUpdate.Location = new Point(1053, 625);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(94, 49);
             btnUpdate.TabIndex = 17;
@@ -205,7 +207,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(960, 625);
+            btnDelete.Location = new Point(953, 625);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(94, 49);
             btnDelete.TabIndex = 18;
@@ -214,7 +216,7 @@
             // 
             // tbStudAddId
             // 
-            tbStudAddId.Location = new Point(874, 387);
+            tbStudAddId.Location = new Point(874, 418);
             tbStudAddId.Name = "tbStudAddId";
             tbStudAddId.ReadOnly = true;
             tbStudAddId.Size = new Size(373, 27);
@@ -223,7 +225,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(874, 364);
+            label8.Location = new Point(874, 395);
             label8.Name = "label8";
             label8.Size = new Size(139, 20);
             label8.TabIndex = 19;
@@ -231,7 +233,7 @@
             // 
             // tbAddress
             // 
-            tbAddress.Location = new Point(874, 440);
+            tbAddress.Location = new Point(874, 471);
             tbAddress.Name = "tbAddress";
             tbAddress.Size = new Size(373, 27);
             tbAddress.TabIndex = 22;
@@ -239,7 +241,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(874, 417);
+            label9.Location = new Point(874, 448);
             label9.Name = "label9";
             label9.Size = new Size(65, 20);
             label9.TabIndex = 21;
@@ -247,7 +249,7 @@
             // 
             // tbCity
             // 
-            tbCity.Location = new Point(874, 493);
+            tbCity.Location = new Point(874, 524);
             tbCity.Name = "tbCity";
             tbCity.Size = new Size(373, 27);
             tbCity.TabIndex = 24;
@@ -255,7 +257,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(874, 470);
+            label10.Location = new Point(874, 501);
             label10.Name = "label10";
             label10.Size = new Size(37, 20);
             label10.TabIndex = 23;
@@ -263,7 +265,7 @@
             // 
             // tbState
             // 
-            tbState.Location = new Point(874, 546);
+            tbState.Location = new Point(874, 577);
             tbState.Name = "tbState";
             tbState.Size = new Size(182, 27);
             tbState.TabIndex = 26;
@@ -271,7 +273,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(874, 523);
+            label11.Location = new Point(874, 554);
             label11.Name = "label11";
             label11.Size = new Size(46, 20);
             label11.TabIndex = 25;
@@ -279,7 +281,7 @@
             // 
             // tbCountry
             // 
-            tbCountry.Location = new Point(1067, 546);
+            tbCountry.Location = new Point(1067, 577);
             tbCountry.Name = "tbCountry";
             tbCountry.Size = new Size(180, 27);
             tbCountry.TabIndex = 28;
@@ -287,17 +289,36 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(1067, 523);
+            label12.Location = new Point(1067, 554);
             label12.Name = "label12";
             label12.Size = new Size(63, 20);
             label12.TabIndex = 27;
             label12.Text = "Country:";
+            // 
+            // cbGrade
+            // 
+            cbGrade.FormattingEnabled = true;
+            cbGrade.Location = new Point(874, 345);
+            cbGrade.Name = "cbGrade";
+            cbGrade.Size = new Size(373, 28);
+            cbGrade.TabIndex = 29;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(874, 322);
+            label13.Name = "label13";
+            label13.Size = new Size(90, 20);
+            label13.TabIndex = 30;
+            label13.Text = "Grade Level:";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1268, 685);
+            Controls.Add(label13);
+            Controls.Add(cbGrade);
             Controls.Add(tbCountry);
             Controls.Add(label12);
             Controls.Add(tbState);
@@ -363,5 +384,7 @@
         private Label label11;
         private TextBox tbCountry;
         private Label label12;
+        private ComboBox cbGrade;
+        private Label label13;
     }
 }

@@ -12,16 +12,24 @@ namespace EntityFrameworkSqlite2.Presenter
     public class StudentPresenter
     {
         private StudentView studentView;
+        private GradeView gradeView;
         private StudentRepository studentRepository;
-        private BindingSource bindingSource;
+        private GradeRepository gradeRepository;
+        private BindingSource studentBindingSource;
+        private BindingSource gradeBindingSource;
         private IEnumerable<Student> students;
+        private IEnumerable<Grade> grades;
 
-        public StudentPresenter(StudentView studentView, StudentRepository studentRepository)
+        public StudentPresenter(StudentView studentView, GradeView gradeView, StudentRepository studentRepository, GradeRepository gradeRepository)
         {
-            bindingSource = new BindingSource();
+            studentBindingSource = new BindingSource();
+            gradeBindingSource = new BindingSource();
+            this.gradeRepository = gradeRepository;
+            this.gradeView = gradeView;
             this.studentView = studentView;
             this.studentRepository = studentRepository;
-            this.studentView.StudentBind(bindingSource);
+            this.studentView.StudentBind(studentBindingSource);
+            this.gradeView.GradeBind(gradeBindingSource);
             this.studentView.eventAdd += StudentView_eventAdd;
             this.studentView.eventUpdate += StudentView_eventUpdate;
             this.studentView.eventDelete += StudentView_eventDelete;
@@ -32,7 +40,7 @@ namespace EntityFrameworkSqlite2.Presenter
 
         private void StudentView_eventCellClick(object? sender, EventArgs e)
         {
-            var student = (Student)bindingSource.Current;
+            var student = (Student)studentBindingSource.Current;
             this.studentView.StudentId = student.StudentId;
             this.studentView.LastName = student.LastName;
             this.studentView.FirstName = student.FirstName;
@@ -60,7 +68,10 @@ namespace EntityFrameworkSqlite2.Presenter
         private void load()
         {
             students = studentRepository.GetAll();
-            bindingSource.DataSource = this.students;
+            studentBindingSource.DataSource = this.students;
+
+            grades = gradeRepository.GetAll();
+            gradeBindingSource.DataSource = this.grades;
         }
     }
 }

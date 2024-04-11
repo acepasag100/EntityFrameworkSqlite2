@@ -22,5 +22,6 @@ namespace EntityFrameworkSqlite2.View
         public event EventHandler eventCellClick;
 
         public void StudentBind(BindingSource bindingSource);
+        //public void StudentGrade
     }
 }
