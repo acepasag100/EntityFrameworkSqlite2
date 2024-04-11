@@ -214,7 +214,7 @@
             // 
             // tbStudAddId
             // 
-            tbStudAddId.Location = new Point(874, 356);
+            tbStudAddId.Location = new Point(874, 387);
             tbStudAddId.Name = "tbStudAddId";
             tbStudAddId.ReadOnly = true;
             tbStudAddId.Size = new Size(373, 27);
@@ -223,7 +223,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(874, 333);
+            label8.Location = new Point(874, 364);
             label8.Name = "label8";
             label8.Size = new Size(139, 20);
             label8.TabIndex = 19;
@@ -231,7 +231,7 @@
             // 
             // tbAddress
             // 
-            tbAddress.Location = new Point(874, 409);
+            tbAddress.Location = new Point(874, 440);
             tbAddress.Name = "tbAddress";
             tbAddress.Size = new Size(373, 27);
             tbAddress.TabIndex = 22;
@@ -239,7 +239,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(874, 386);
+            label9.Location = new Point(874, 417);
             label9.Name = "label9";
             label9.Size = new Size(65, 20);
             label9.TabIndex = 21;
@@ -247,7 +247,7 @@
             // 
             // tbCity
             // 
-            tbCity.Location = new Point(874, 462);
+            tbCity.Location = new Point(874, 493);
             tbCity.Name = "tbCity";
             tbCity.Size = new Size(373, 27);
             tbCity.TabIndex = 24;
@@ -255,7 +255,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(874, 439);
+            label10.Location = new Point(874, 470);
             label10.Name = "label10";
             label10.Size = new Size(37, 20);
             label10.TabIndex = 23;
@@ -263,15 +263,15 @@
             // 
             // tbState
             // 
-            tbState.Location = new Point(874, 515);
+            tbState.Location = new Point(874, 546);
             tbState.Name = "tbState";
-            tbState.Size = new Size(373, 27);
+            tbState.Size = new Size(182, 27);
             tbState.TabIndex = 26;
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(874, 492);
+            label11.Location = new Point(874, 523);
             label11.Name = "label11";
             label11.Size = new Size(46, 20);
             label11.TabIndex = 25;
@@ -279,15 +279,15 @@
             // 
             // tbCountry
             // 
-            tbCountry.Location = new Point(872, 568);
+            tbCountry.Location = new Point(1067, 546);
             tbCountry.Name = "tbCountry";
-            tbCountry.Size = new Size(373, 27);
+            tbCountry.Size = new Size(180, 27);
             tbCountry.TabIndex = 28;
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(872, 545);
+            label12.Location = new Point(1067, 523);
             label12.Name = "label12";
             label12.Size = new Size(63, 20);
             label12.TabIndex = 27;

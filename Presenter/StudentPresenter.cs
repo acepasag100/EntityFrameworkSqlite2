@@ -36,6 +36,10 @@ namespace EntityFrameworkSqlite2.Presenter
             this.studentView.StudentId = student.StudentId;
             this.studentView.LastName = student.LastName;
             this.studentView.FirstName = student.FirstName;
+            this.studentView.DateOfBirth = student.DateOfBirth;
+            this.studentView.Height = student.Height;
+            this.studentView.Weight = student.Weight;
+            //this.studentView.GradeId = student.GradeId;
         }
 
         private void StudentView_eventDelete(object? sender, EventArgs e)
