@@ -11,6 +11,7 @@ namespace EntityFrameworkSqlite2.Model
         public void Add(Grade grade);
         public void Update(Grade grade);
         public void Delete(Grade grade);
-        public IEnumerable<Grade> GetAll();
+        public IEnumerable<String> GetAll();
+        public Grade GetByValue(string name);
     }
 }

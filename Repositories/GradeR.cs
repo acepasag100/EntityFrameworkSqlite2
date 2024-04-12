@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace EntityFrameworkSqlite2.Repositories
 {
@@ -19,9 +20,21 @@ namespace EntityFrameworkSqlite2.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Grade> GetAll()
+        public IEnumerable<String> GetAll()
         {
-            return Grades.ToList();
+            List<string> grade = new List<string>();
+            var gradeList = Grades.ToList();
+            foreach(var item in gradeList)
+            {
+                grade.Add(item.GradeName);
+            }
+            return grade;
+        }
+
+        public Grade GetByValue(string name)
+        {
+            var grade = Grades.Where(x => x.GradeName == name).Single();
+            return grade;
         }
 
         public void Update(Grade grade)
@@ -30,3 +43,4 @@ namespace EntityFrameworkSqlite2.Repositories
         }
     }
 }
+

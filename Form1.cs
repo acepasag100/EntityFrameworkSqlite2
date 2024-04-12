@@ -33,6 +33,10 @@ namespace EntityFrameworkSqlite2
             {
                 eventCellClick?.Invoke(this, EventArgs.Empty);
             };
+            cbGrade.SelectedIndexChanged += (s, e) =>
+            {
+                eventComboClick?.Invoke(this, EventArgs.Empty);
+            };
         }
 
         public int StudentId 
@@ -75,11 +79,11 @@ namespace EntityFrameworkSqlite2
         public event EventHandler eventUpdate;
         public event EventHandler eventDelete;
         public event EventHandler eventCellClick;
+        public event EventHandler eventComboClick;
 
         public void GradeBind(BindingSource bindingSource)
         {
             cbGrade.DataSource = bindingSource;
-            cbGrade.DisplayMember = "GradeName";
         }
 
         public void StudentBind(BindingSource bindingSource)

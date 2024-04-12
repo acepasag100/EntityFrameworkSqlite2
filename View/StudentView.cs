@@ -20,6 +20,7 @@ namespace EntityFrameworkSqlite2.View
         public event EventHandler eventUpdate;
         public event EventHandler eventDelete;
         public event EventHandler eventCellClick;
+        public event EventHandler eventComboClick;
 
         public void StudentBind(BindingSource bindingSource);
         //public void StudentGrade

@@ -18,7 +18,10 @@ namespace EntityFrameworkSqlite2.Presenter
         private BindingSource studentBindingSource;
         private BindingSource gradeBindingSource;
         private IEnumerable<Student> students;
-        private IEnumerable<Grade> grades;
+        private IEnumerable<String> grades;
+
+        Student? _student;
+        Grade? _grade;
 
         public StudentPresenter(StudentView studentView, GradeView gradeView, StudentRepository studentRepository, GradeRepository gradeRepository)
         {
@@ -34,20 +37,26 @@ namespace EntityFrameworkSqlite2.Presenter
             this.studentView.eventUpdate += StudentView_eventUpdate;
             this.studentView.eventDelete += StudentView_eventDelete;
             this.studentView.eventCellClick += StudentView_eventCellClick;
+            this.studentView.eventComboClick += StudentView_eventComboClick;
 
             load();
         }
 
+        private void StudentView_eventComboClick(object? sender, EventArgs e)
+        {
+            var item = (string)gradeBindingSource.Current;
+            _grade = gradeRepository.GetByValue(item.ToString());
+        }
+
         private void StudentView_eventCellClick(object? sender, EventArgs e)
         {
-            var student = (Student)studentBindingSource.Current;
-            this.studentView.StudentId = student.StudentId;
-            this.studentView.LastName = student.LastName;
-            this.studentView.FirstName = student.FirstName;
-            this.studentView.DateOfBirth = student.DateOfBirth;
-            this.studentView.Height = student.Height;
-            this.studentView.Weight = student.Weight;
-            //this.studentView.GradeId = student.GradeId;
+            _student = (Student)studentBindingSource.Current;
+            this.studentView.StudentId = _student.StudentId;
+            this.studentView.LastName = _student.LastName;
+            this.studentView.FirstName = _student.FirstName;
+            this.studentView.DateOfBirth = _student.DateOfBirth;
+            this.studentView.Height = _student.Height;
+            this.studentView.Weight = _student.Weight;
         }
 
         private void StudentView_eventDelete(object? sender, EventArgs e)
@@ -62,7 +71,7 @@ namespace EntityFrameworkSqlite2.Presenter
 
         private void StudentView_eventAdd(object? sender, EventArgs e)
         {
-            
+
         }
 
         private void load()
@@ -71,7 +80,7 @@ namespace EntityFrameworkSqlite2.Presenter
             studentBindingSource.DataSource = this.students;
 
             grades = gradeRepository.GetAll();
-            gradeBindingSource.DataSource = this.grades;
+            gradeBindingSource.DataSource = grades;
         }
     }
 }
