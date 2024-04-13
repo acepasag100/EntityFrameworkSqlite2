@@ -18,7 +18,8 @@ namespace EntityFrameworkSqlite2.Repositories
 
         public void Delete(Student student)
         {
-            throw new NotImplementedException();
+            Students.Remove(student);
+            SaveChanges();
         }
 
         public IEnumerable<Student> GetAll()
@@ -33,7 +34,8 @@ namespace EntityFrameworkSqlite2.Repositories
 
         public void Update(Student student)
         {
-            throw new NotImplementedException();
+            Students.Update(student);
+            SaveChanges();
         }
     }
 }

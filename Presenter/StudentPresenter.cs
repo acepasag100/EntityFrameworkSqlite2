@@ -67,7 +67,8 @@ namespace EntityFrameworkSqlite2.Presenter
             this.studentView.DateOfBirth = _student.DateOfBirth;
             this.studentView.Height = _student.Height;
             this.studentView.Weight = _student.Weight;
-            
+
+            this.studentView.GradeId = _grade.Id;
             this.gradeView.GradeName = _student.Grade.GradeName;
 
             this.studentAdressView.StudentAddressId = _student.StudentAddress.StudentAddressId;
@@ -79,12 +80,14 @@ namespace EntityFrameworkSqlite2.Presenter
 
         private void StudentView_eventDelete(object? sender, EventArgs e)
         {
-            
+            studentRepository.Delete(_student);
+            load();
         }
 
         private void StudentView_eventUpdate(object? sender, EventArgs e)
         {
-            
+            studentRepository.Update(_student);
+            load();
         }
 
         private void StudentView_eventAdd(object? sender, EventArgs e)
@@ -116,6 +119,8 @@ namespace EntityFrameworkSqlite2.Presenter
 
             grades = gradeRepository.GetAll();
             gradeBindingSource.DataSource = grades;
+
+            _student = null;
 
             this.studentView.StudentId = -1;
             this.studentView.LastName = string.Empty;
