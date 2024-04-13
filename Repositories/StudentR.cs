@@ -12,7 +12,8 @@ namespace EntityFrameworkSqlite2.Repositories
     {
         public void Add(Student student)
         {
-            throw new NotImplementedException();
+            Students.Add(student);
+            SaveChanges();
         }
 
         public void Delete(Student student)

@@ -22,8 +22,8 @@ namespace EntityFrameworkSqlite2.Presenter
         private IEnumerable<Student> students;
         private IEnumerable<String> grades;
 
-        Student? _student;
-        Grade? _grade;
+        private Student? _student;
+        private Grade? _grade;
 
         public StudentPresenter(object View, StudentRepository studentRepository, GradeRepository gradeRepository, StudentAddressRepository studentAddressRepository)
         {
@@ -48,12 +48,14 @@ namespace EntityFrameworkSqlite2.Presenter
             this.studentView.eventComboClick += StudentView_eventComboClick;
 
             load();
+            StudentView_eventComboClick(null, null);
         }
 
-        private void StudentView_eventComboClick(object? sender, EventArgs e)
+        private void StudentView_eventComboClick(object? sender, EventArgs? e)
         {
             var item = (string)gradeBindingSource.Current;
             _grade = gradeRepository.GetByValue(item.ToString());
+            this.studentView.GradeId = _grade.Id;
         }
 
         private void StudentView_eventCellClick(object? sender, EventArgs e)
@@ -87,7 +89,24 @@ namespace EntityFrameworkSqlite2.Presenter
 
         private void StudentView_eventAdd(object? sender, EventArgs e)
         {
-
+            _student = new Student()
+            {
+                DateOfBirth = this.studentView.DateOfBirth,
+                FirstName = this.studentView.FirstName,
+                Height = this.studentView.Height,
+                Weight = this.studentView.Weight,
+                LastName = this.studentView.LastName,
+                StudentAddress = new StudentAddress()
+                {
+                    Address = this.studentAdressView.Address,
+                    City = this.studentAdressView.City,
+                    Country = this.studentAdressView.Country,
+                    State = this.studentAdressView.State,
+                },
+                GradeId = this.studentView.GradeId
+            };
+            studentRepository.Add(_student);
+            load();
         }
 
         private void load()
@@ -97,6 +116,19 @@ namespace EntityFrameworkSqlite2.Presenter
 
             grades = gradeRepository.GetAll();
             gradeBindingSource.DataSource = grades;
+
+            this.studentView.StudentId = -1;
+            this.studentView.LastName = string.Empty;
+            this.studentView.FirstName = string.Empty;
+            this.studentView.DateOfBirth = DateTime.Now.ToString();
+            this.studentView.Height = 0;
+            this.studentView.Weight = 0;
+            
+            this.studentAdressView.StudentAddressId = -1;
+            this.studentAdressView.Address = string.Empty;
+            this.studentAdressView.City = string.Empty;
+            this.studentAdressView.State = string.Empty;
+            this.studentAdressView.Country = string.Empty;
         }
     }
 }

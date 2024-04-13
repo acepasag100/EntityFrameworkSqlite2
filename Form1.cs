@@ -57,7 +57,7 @@ namespace EntityFrameworkSqlite2
         }
         public string DateOfBirth 
         { 
-            get => dtpDob.Value.ToString("mm/dd/yyyy"); 
+            get => dtpDob.Value.ToString("dd-MM-yyyy"); 
             set => dtpDob.Value = DateTime.Parse(value); 
         }
         public float Weight
@@ -67,8 +67,8 @@ namespace EntityFrameworkSqlite2
         }
         public int GradeId 
         {
-            get => throw new NotImplementedException(); 
-            set => throw new NotImplementedException(); 
+            get => int.Parse(cbGrade.Tag.ToString()); 
+            set => cbGrade.Tag = value.ToString(); 
         }
         public float Height 
         { 
