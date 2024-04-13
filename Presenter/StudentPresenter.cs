@@ -13,8 +13,10 @@ namespace EntityFrameworkSqlite2.Presenter
     {
         private StudentView studentView;
         private GradeView gradeView;
+        private StudentAdressView studentAdressView;
         private StudentRepository studentRepository;
         private GradeRepository gradeRepository;
+        private StudentAddressRepository studentAddressRepository;
         private BindingSource studentBindingSource;
         private BindingSource gradeBindingSource;
         private IEnumerable<Student> students;
@@ -23,16 +25,22 @@ namespace EntityFrameworkSqlite2.Presenter
         Student? _student;
         Grade? _grade;
 
-        public StudentPresenter(StudentView studentView, GradeView gradeView, StudentRepository studentRepository, GradeRepository gradeRepository)
+        public StudentPresenter(object View, StudentRepository studentRepository, GradeRepository gradeRepository, StudentAddressRepository studentAddressRepository)
         {
             studentBindingSource = new BindingSource();
             gradeBindingSource = new BindingSource();
+
             this.gradeRepository = gradeRepository;
-            this.gradeView = gradeView;
-            this.studentView = studentView;
+            this.studentAddressRepository = studentAddressRepository;
             this.studentRepository = studentRepository;
+
+            this.gradeView = (GradeView)View;
+            this.studentView = (StudentView)View;
+            this.studentAdressView = (StudentAdressView)View;
+            
             this.studentView.StudentBind(studentBindingSource);
             this.gradeView.GradeBind(gradeBindingSource);
+
             this.studentView.eventAdd += StudentView_eventAdd;
             this.studentView.eventUpdate += StudentView_eventUpdate;
             this.studentView.eventDelete += StudentView_eventDelete;
@@ -57,17 +65,24 @@ namespace EntityFrameworkSqlite2.Presenter
             this.studentView.DateOfBirth = _student.DateOfBirth;
             this.studentView.Height = _student.Height;
             this.studentView.Weight = _student.Weight;
-            this.gradeView.GradeName = gradeRepository.GetById(_student.GradeId);
+            
+            this.gradeView.GradeName = _student.Grade.GradeName;
+
+            this.studentAdressView.StudentAddressId = _student.StudentAddress.StudentAddressId;
+            this.studentAdressView.Address = _student.StudentAddress.Address;
+            this.studentAdressView.City = _student.StudentAddress.City;
+            this.studentAdressView.State = _student.StudentAddress.State;
+            this.studentAdressView.Country = _student.StudentAddress.Country;   
         }
 
         private void StudentView_eventDelete(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void StudentView_eventUpdate(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void StudentView_eventAdd(object? sender, EventArgs e)

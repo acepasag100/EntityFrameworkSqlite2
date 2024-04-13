@@ -5,7 +5,7 @@ using EntityFrameworkSqlite2.View;
 
 namespace EntityFrameworkSqlite2
 {
-    public partial class Form1 : Form, StudentView, GradeView
+    public partial class Form1 : Form, StudentView, GradeView, StudentAdressView
     {
         Repository repository = new Repository();
         public Form1()
@@ -15,7 +15,8 @@ namespace EntityFrameworkSqlite2
             {
                 StudentRepository repository = new StudentR();
                 GradeRepository gradeRepository = new GradeR();
-                StudentPresenter presenter = new StudentPresenter(this, this, repository, gradeRepository);
+                StudentAddressRepository studentAddressRepository = new StudentAddressR();
+                StudentPresenter presenter = new StudentPresenter(this, repository, gradeRepository, studentAddressRepository);
             };
             btnAdd.Click += delegate
             {
@@ -79,6 +80,31 @@ namespace EntityFrameworkSqlite2
             get => cbGrade.SelectedItem.ToString(); 
             set => cbGrade.SelectedItem = value; 
         }
+        public int StudentAddressId 
+        { 
+            get => int.Parse(tbStudAddId.Text); 
+            set => tbStudAddId.Text = value.ToString(); 
+        }
+        public string Address 
+        { 
+            get => tbAddress.Text;
+            set => tbAddress.Text = value; 
+        }
+        public string City 
+        { 
+            get => tbCity.Text; 
+            set => tbCity.Text = value; 
+        }
+        public string State 
+        { 
+            get => tbState.Text; 
+            set => tbState.Text = value; 
+        }
+        public string Country 
+        { 
+            get => tbCountry.Text; 
+            set => tbCountry.Text = value; 
+        }
 
         public event EventHandler eventAdd;
         public event EventHandler eventUpdate;
@@ -104,7 +130,6 @@ namespace EntityFrameworkSqlite2
                     dataGridView1.Columns["StudentAddress"].Visible = false;
                 }
             };
-            
         }
     }
 }
