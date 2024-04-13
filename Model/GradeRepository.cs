@@ -13,5 +13,6 @@ namespace EntityFrameworkSqlite2.Model
         public void Delete(Grade grade);
         public IEnumerable<String> GetAll();
         public Grade GetByValue(string name);
+        public String GetById(int id);
     }
 }

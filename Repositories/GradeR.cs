@@ -31,6 +31,12 @@ namespace EntityFrameworkSqlite2.Repositories
             return grade;
         }
 
+        public string GetById(int id)
+        {
+            var grade = Grades.Where(x => x.Id == id).Single();
+            return grade.GradeName;
+        }
+
         public Grade GetByValue(string name)
         {
             var grade = Grades.Where(x => x.GradeName == name).Single();

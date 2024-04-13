@@ -8,6 +8,7 @@ namespace EntityFrameworkSqlite2.View
 {
     public interface GradeView
     {
+        public string GradeName { get; set; }   
         public void GradeBind(BindingSource bindingSource);
     }
 }

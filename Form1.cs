@@ -59,10 +59,10 @@ namespace EntityFrameworkSqlite2
             get => dtpDob.Value.ToString("mm/dd/yyyy"); 
             set => dtpDob.Value = DateTime.Parse(value); 
         }
-        public float Weight 
+        public float Weight
         {
-            get => float.Parse(tbWeight.Text); 
-            set => tbWeight.Text = value.ToString(); 
+            get => float.Parse(tbWeight.Text);
+            set => tbWeight.Text = value.ToString();
         }
         public int GradeId 
         {
@@ -73,6 +73,11 @@ namespace EntityFrameworkSqlite2
         { 
             get => float.Parse(tbHeight.Text); 
             set => tbHeight.Text = value.ToString(); 
+        }
+        public string GradeName 
+        { 
+            get => cbGrade.SelectedItem.ToString(); 
+            set => cbGrade.SelectedItem = value; 
         }
 
         public event EventHandler eventAdd;

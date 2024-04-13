@@ -57,6 +57,7 @@ namespace EntityFrameworkSqlite2.Presenter
             this.studentView.DateOfBirth = _student.DateOfBirth;
             this.studentView.Height = _student.Height;
             this.studentView.Weight = _student.Weight;
+            this.gradeView.GradeName = gradeRepository.GetById(_student.GradeId);
         }
 
         private void StudentView_eventDelete(object? sender, EventArgs e)

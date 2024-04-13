@@ -297,6 +297,7 @@
             // 
             // cbGrade
             // 
+            cbGrade.DropDownStyle = ComboBoxStyle.DropDownList;
             cbGrade.FormattingEnabled = true;
             cbGrade.Location = new Point(874, 345);
             cbGrade.Name = "cbGrade";
