@@ -94,6 +94,17 @@ namespace EntityFrameworkSqlite2
         public void StudentBind(BindingSource bindingSource)
         {
             dataGridView1.DataSource = bindingSource;
+            bindingSource.DataSourceChanged += delegate
+            {
+                if (bindingSource.Count > 0)
+                {
+                    dataGridView1.Columns["StudentId"].Visible = false;
+                    dataGridView1.Columns["Grade"].Visible = false;
+                    dataGridView1.Columns["GradeId"].Visible = false;
+                    dataGridView1.Columns["StudentAddress"].Visible = false;
+                }
+            };
+            
         }
     }
 }

@@ -22,7 +22,7 @@ namespace EntityFrameworkSqlite2.Repositories
 
         public IEnumerable<Student> GetAll()
         {   
-            return Students.ToList(); 
+            return Students.Include(x => x.StudentAddress).Include(x => x.Grade).ToList(); 
         }
 
         public IEnumerable<Student> GetAll(string value)
