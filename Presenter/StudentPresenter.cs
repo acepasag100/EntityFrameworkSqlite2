@@ -1,4 +1,5 @@
 ﻿using EntityFrameworkSqlite2.Model;
+using EntityFrameworkSqlite2.Repositories;
 using EntityFrameworkSqlite2.View;
 using System;
 using System.Collections.Generic;
@@ -58,7 +59,7 @@ namespace EntityFrameworkSqlite2.Presenter
             this.studentView.GradeId = _grade.Id;
         }
 
-        private void StudentView_eventCellClick(object? sender, EventArgs e)
+        private void StudentView_eventCellClick(object? sender, EventArgs? e)
         {
             _student = (Student)studentBindingSource.Current;
             this.studentView.StudentId = _student.StudentId;
@@ -80,12 +81,41 @@ namespace EntityFrameworkSqlite2.Presenter
 
         private void StudentView_eventDelete(object? sender, EventArgs e)
         {
-            studentRepository.Delete(_student);
+            _student = new Student()
+            {
+                StudentId = this.studentView.StudentId,
+                DateOfBirth = this.studentView.DateOfBirth,
+                FirstName = this.studentView.FirstName,
+                Height = this.studentView.Height,
+                Weight = this.studentView.Weight,
+                LastName = this.studentView.LastName,
+                StudentAddress = new StudentAddress()
+                {
+                    Address = this.studentAdressView.Address,
+                    City = this.studentAdressView.City,
+                    Country = this.studentAdressView.Country,
+                    State = this.studentAdressView.State,
+                },
+                GradeId = this.studentView.GradeId,
+                Grade = _grade
+            };
             load();
         }
 
         private void StudentView_eventUpdate(object? sender, EventArgs e)
         {
+            _student.StudentId = this.studentView.StudentId;
+            _student.DateOfBirth = this.studentView.DateOfBirth;
+            _student.FirstName = this.studentView.FirstName;
+            _student.Height = this.studentView.Height;
+            _student.Weight = this.studentView.Weight;
+            _student.LastName = this.studentView.LastName;
+            _student.GradeId = this.studentView.GradeId;
+            //_student.StudentAddress.Address = this.studentAdressView.Address;
+            //_student.StudentAddress.City = this.studentAdressView.City;
+            //_student.StudentAddress.Country = this.studentAdressView.Country;
+            //_student.StudentAddress.State = this.studentAdressView.State;
+            //_student.Grade = _grade;
             studentRepository.Update(_student);
             load();
         }
