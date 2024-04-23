@@ -20,8 +20,8 @@ namespace EntityFrameworkSqlite2.Presenter
         private StudentAddressRepository studentAddressRepository;
         private BindingSource studentBindingSource;
         private BindingSource gradeBindingSource;
-        private IEnumerable<Student> students;
-        private IEnumerable<String> grades;
+        private IEnumerable<Student>? students;
+        private IEnumerable<String>? grades;
 
         private Student? _student;
         private Grade? _grade;
@@ -55,6 +55,7 @@ namespace EntityFrameworkSqlite2.Presenter
         private void StudentView_eventComboClick(object? sender, EventArgs? e)
         {
             var item = (string)gradeBindingSource.Current;
+            MessageBox.Show("set " + item);
             _grade = gradeRepository.GetByValue(item.ToString());
             this.studentView.GradeId = _grade.Id;
         }
@@ -111,10 +112,12 @@ namespace EntityFrameworkSqlite2.Presenter
             _student.Weight = this.studentView.Weight;
             _student.LastName = this.studentView.LastName;
             _student.GradeId = this.studentView.GradeId;
-            //_student.StudentAddress.Address = this.studentAdressView.Address;
-            //_student.StudentAddress.City = this.studentAdressView.City;
-            //_student.StudentAddress.Country = this.studentAdressView.Country;
-            //_student.StudentAddress.State = this.studentAdressView.State;
+
+            _student.StudentAddress.StudentAddressId = this.studentAdressView.StudentAddressId;
+            _student.StudentAddress.Address = this.studentAdressView.Address;
+            _student.StudentAddress.City = this.studentAdressView.City;
+            _student.StudentAddress.Country = this.studentAdressView.Country;
+            _student.StudentAddress.State = this.studentAdressView.State;
             //_student.Grade = _grade;
             studentRepository.Update(_student);
             load();
@@ -144,6 +147,9 @@ namespace EntityFrameworkSqlite2.Presenter
 
         private void load()
         {
+            students = null;
+            grades = null;
+
             students = studentRepository.GetAll();
             studentBindingSource.DataSource = this.students;
 

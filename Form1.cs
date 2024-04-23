@@ -34,7 +34,7 @@ namespace EntityFrameworkSqlite2
             {
                 eventCellClick?.Invoke(this, EventArgs.Empty);
             };
-            cbGrade.SelectedIndexChanged += (s, e) =>
+            cbGrade.SelectedValueChanged += (s, e) =>
             {
                 eventComboClick?.Invoke(this, EventArgs.Empty);
             };
@@ -67,8 +67,15 @@ namespace EntityFrameworkSqlite2
         }
         public int GradeId 
         {
-            get => int.Parse(cbGrade.Tag.ToString()); 
-            set => cbGrade.Tag = value.ToString(); 
+            get 
+            {
+                var item = int.Parse(cbGrade.Tag.ToString());
+                return item; 
+            }
+            set
+            {
+                cbGrade.Tag = value.ToString();
+            }
         }
         public float Height 
         { 

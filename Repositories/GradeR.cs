@@ -1,4 +1,5 @@
 ﻿using EntityFrameworkSqlite2.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
