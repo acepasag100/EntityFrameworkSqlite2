@@ -55,13 +55,14 @@ namespace EntityFrameworkSqlite2.Presenter
         private void StudentView_eventComboClick(object? sender, EventArgs? e)
         {
             var item = (string)gradeBindingSource.Current;
-            MessageBox.Show("set " + item);
+            
             _grade = gradeRepository.GetByValue(item.ToString());
             this.studentView.GradeId = _grade.Id;
         }
 
         private void StudentView_eventCellClick(object? sender, EventArgs? e)
         {
+            MessageBox.Show("set " + this.gradeView.GradeName);
             _student = (Student)studentBindingSource.Current;
             this.studentView.StudentId = _student.StudentId;
             this.studentView.LastName = _student.LastName;
