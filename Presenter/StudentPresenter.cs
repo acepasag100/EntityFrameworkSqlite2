@@ -84,24 +84,10 @@ namespace EntityFrameworkSqlite2.Presenter
 
         private void StudentView_eventDelete(object? sender, EventArgs e)
         {
-            _student = new Student()
-            {
-                StudentId = this.studentView.StudentId,
-                DateOfBirth = this.studentView.DateOfBirth,
-                FirstName = this.studentView.FirstName,
-                Height = this.studentView.Height,
-                Weight = this.studentView.Weight,
-                LastName = this.studentView.LastName,
-                StudentAddress = new StudentAddress()
-                {
-                    Address = this.studentAdressView.Address,
-                    City = this.studentAdressView.City,
-                    Country = this.studentAdressView.Country,
-                    State = this.studentAdressView.State,
-                },
-                GradeId = this.studentView.GradeId,
-                Grade = _grade
-            };
+            var gradeItem = gradeRepository.GetByValue(this.studentView.GradeName);
+            _student.StudentId = this.studentView.StudentId;
+            
+            studentRepository.Delete(_student);
             load();
         }
 
@@ -129,6 +115,7 @@ namespace EntityFrameworkSqlite2.Presenter
 
         private void StudentView_eventAdd(object? sender, EventArgs e)
         {
+            var gradeItem = gradeRepository.GetByValue(this.studentView.GradeName);
             _student = new Student()
             {
                 DateOfBirth = this.studentView.DateOfBirth,
@@ -143,7 +130,7 @@ namespace EntityFrameworkSqlite2.Presenter
                     Country = this.studentAdressView.Country,
                     State = this.studentAdressView.State,
                 },
-                GradeId = this.studentView.GradeId
+                GradeId = gradeItem.Id
             };
             studentRepository.Add(_student);
             load();
