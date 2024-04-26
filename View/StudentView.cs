@@ -15,6 +15,7 @@ namespace EntityFrameworkSqlite2.View
         public float Height { get; set; }
         public float Weight { get; set; }
         public int GradeId { get; set; }
+        public string GradeName { get; set; }
 
         public event EventHandler eventAdd;
         public event EventHandler eventUpdate;

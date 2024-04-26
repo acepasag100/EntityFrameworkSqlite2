@@ -69,8 +69,9 @@ namespace EntityFrameworkSqlite2
         {
             get 
             {
-                var item = int.Parse(cbGrade.Tag.ToString());
-                return item; 
+                var item = cbGrade.SelectedValue.ToString();
+                MessageBox.Show(""+item);
+                return 0; 
             }
             set
             {

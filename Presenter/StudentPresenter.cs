@@ -54,15 +54,15 @@ namespace EntityFrameworkSqlite2.Presenter
 
         private void StudentView_eventComboClick(object? sender, EventArgs? e)
         {
-            var item = (string)gradeBindingSource.Current;
+            //var item = (string)gradeBindingSource.Current;
             
-            _grade = gradeRepository.GetByValue(item.ToString());
-            this.studentView.GradeId = _grade.Id;
+            //_grade = gradeRepository.GetByValue(item.ToString());
+            //this.studentView.GradeId = _grade.Id;
         }
 
         private void StudentView_eventCellClick(object? sender, EventArgs? e)
         {
-            MessageBox.Show("set " + this.gradeView.GradeName);
+            //MessageBox.Show("set " + this.gradeView.GradeName);
             _student = (Student)studentBindingSource.Current;
             this.studentView.StudentId = _student.StudentId;
             this.studentView.LastName = _student.LastName;
@@ -71,7 +71,8 @@ namespace EntityFrameworkSqlite2.Presenter
             this.studentView.Height = _student.Height;
             this.studentView.Weight = _student.Weight;
 
-            this.studentView.GradeId = _grade.Id;
+            //this.studentView.GradeId = _grade.Id;
+            this.studentView.GradeId = _student.Grade.Id;
             this.gradeView.GradeName = _student.Grade.GradeName;
 
             this.studentAdressView.StudentAddressId = _student.StudentAddress.StudentAddressId;
@@ -112,7 +113,9 @@ namespace EntityFrameworkSqlite2.Presenter
             _student.Height = this.studentView.Height;
             _student.Weight = this.studentView.Weight;
             _student.LastName = this.studentView.LastName;
-            _student.GradeId = this.studentView.GradeId;
+            
+            var gradeItem = gradeRepository.GetByValue(studentView.GradeName);
+            _student.GradeId = gradeItem.Id;
 
             _student.StudentAddress.StudentAddressId = this.studentAdressView.StudentAddressId;
             _student.StudentAddress.Address = this.studentAdressView.Address;
